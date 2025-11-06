@@ -36,9 +36,18 @@ document.addEventListener('DOMContentLoaded', function() {
         card.addEventListener('click', function() {
             if (!canClick) return; // Ignore clicks during cooldown
             
-            // Play meow sound
-            const meow = new Audio('./sounds/meow.mp3');
-            meow.play();
+            // Check if this card has the PH image
+            const img = card.querySelector('img');
+            const isPH = img && img.src.includes('PH.png');
+            
+            // Play appropriate sound
+            let sound;
+            if (isPH) {
+                sound = new Audio('./sounds/error.mp3');
+            } else {
+                sound = new Audio('./sounds/meow.mp3');
+            }
+            sound.play();
             
             // Set cooldown
             canClick = false;
