@@ -26,9 +26,18 @@ function updateButtonText() {
     }
 }
 
-// Add click event to all cat cards with meow sound
+// Add click event to all cat cards with animal-specific sounds
 document.addEventListener('DOMContentLoaded', function() {
     const catCards = document.querySelectorAll('.cat-card');
+    
+    // Map animal types to sound files
+    const animalSounds = {
+        'cat': './sounds/meow.mp3',
+        'dog': './sounds/woof.mp3',
+        'hamster': './sounds/hamster.mp3',
+        'bird': './sounds/bird.mp3',
+        'placeholder': './sounds/error.mp3'
+    };
     
     catCards.forEach(card => {
         let canClick = true; // Cooldown flag
@@ -36,17 +45,14 @@ document.addEventListener('DOMContentLoaded', function() {
         card.addEventListener('click', function() {
             if (!canClick) return; // Ignore clicks during cooldown
             
-            // Check if this card has the PH image
-            const img = card.querySelector('img');
-            const isPH = img && img.src.includes('PH.png');
+            // Get animal type from data attribute
+            const animalType = card.getAttribute('data-animal') || 'cat';
             
-            // Play appropriate sound
-            let sound;
-            if (isPH) {
-                sound = new Audio('./sounds/error.mp3');
-            } else {
-                sound = new Audio('./sounds/meow.mp3');
-            }
+            // Get the appropriate sound file
+            const soundFile = animalSounds[animalType] || animalSounds['cat'];
+            
+            // Play sound
+            const sound = new Audio(soundFile);
             sound.play();
             
             // Set cooldown
