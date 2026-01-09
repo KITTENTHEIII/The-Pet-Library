@@ -53,9 +53,10 @@ body.dark-mode hr {
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 250px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
+    user-select: none;
 }
 
 .cat-card:hover {
@@ -63,9 +64,18 @@ body.dark-mode hr {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.cat-card:active {
+    transform: translateY(-3px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
 body.dark-mode .cat-card {
     background: #2a2a2a;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .cat-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
 }
 
 .cat-card img {
@@ -74,6 +84,7 @@ body.dark-mode .cat-card {
     display: block;
     margin: 0 auto 15px;
     border-radius: 8px;
+    pointer-events: none;
 }
 
 .cat-card h2 {
@@ -81,6 +92,7 @@ body.dark-mode .cat-card {
     margin-top: 0;
     text-align: center;
     transition: color 0.3s ease;
+    pointer-events: none;
 }
 
 body.dark-mode .cat-card h2 {
@@ -91,6 +103,7 @@ body.dark-mode .cat-card h2 {
     color: #666;
     line-height: 1.6;
     transition: color 0.3s ease;
+    pointer-events: none;
 }
 
 body.dark-mode .cat-card p {
