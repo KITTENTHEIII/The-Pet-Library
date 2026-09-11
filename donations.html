@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support The Pet Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="site-nav">
+        <a href="index.html">🏠 Home</a>
+        <a href="donations.html" class="active">💝 Donate</a>
+    </nav>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+    <h1>Support The Pet Library</h1>
+    <hr> <!-- Separation Line -->
+
+    <div class="donate-intro">
+        <p>Every donation is appreciated and directly supports ongoing improvements and new features coming to this project</p>
+        <div class="paw-divider">🐾 🐾 🐾</div>
+    </div>
+
+    <div class="crypto-container">
+
+        <div class="crypto-card" data-coin="btc">
+            <img class="crypto-symbol" src="./img/Crypto/btc.png" alt="Bitcoin icon">
+            <h3>Bitcoin</h3>
+            <div class="network-label">BTC — on-chain</div>
+            <div class="crypto-address-box" id="addr-btc">bc1qqx978drgg59h3pcxlsjvam9lvf0y3yqrmps6nc</div>
+            <button class="copy-btn" onclick="copyAddress('btc', this)">Copy Address</button>
+        </div>
+
+        <div class="crypto-card" data-coin="eth">
+            <img class="crypto-symbol" src="./img/Crypto/eth.png" alt="Ethereum icon">
+            <h3>Ethereum</h3>
+            <div class="network-label">ETH — ERC-20</div>
+            <div class="crypto-address-box" id="addr-eth">0x57aD77A0e7A5639Df4De7dE755E778bC1A83Eff3</div>
+            <button class="copy-btn" onclick="copyAddress('eth', this)">Copy Address</button>
+        </div>
+    </div>
+
+    <div class="donate-note">
+        <strong>Before you send:</strong> always double-check the address in your wallet app against the one shown here, and confirm you're on the correct network. Crypto transfers can't be reversed, so a mismatched address or network means the funds are gone.
+    </div>
+
+    <script src="script.js"></script>
+    <script src="donations.js"></script>
+</body>
+</html>

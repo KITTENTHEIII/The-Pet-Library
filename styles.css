@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap');
+
 body {
     font-family: Arial, sans-serif;
     max-width: 900px;
@@ -12,6 +14,8 @@ body.dark-mode {
 }
 
 h1 {
+    font-family: 'Quicksand', Arial, sans-serif;
+    font-weight: 700;
     color: #333;
     text-align: center;
     transition: color 0.3s ease;
@@ -22,6 +26,8 @@ body.dark-mode h1 {
 }
 
 h2 {
+    font-family: 'Quicksand', Arial, sans-serif;
+    font-weight: 600;
     text-align: center;
     transition: color 0.3s ease;
 }
@@ -38,6 +44,62 @@ hr {
 body.dark-mode hr {
     border-color: #444;
 }
+
+/* ---------- Top navigation ---------- */
+
+.site-nav {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 8px;
+    z-index: 1000;
+}
+
+.site-nav a {
+    background: #333;
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: 'Quicksand', Arial, sans-serif;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.site-nav a:hover {
+    background: #555;
+}
+
+.site-nav a.active {
+    background: #B8935F;
+}
+
+body.dark-mode .site-nav a {
+    background: #e0e0e0;
+    color: #333;
+}
+
+body.dark-mode .site-nav a:hover {
+    background: #f5f5f5;
+}
+
+body.dark-mode .site-nav a.active {
+    background: #D9A441;
+    color: #1a1a1a;
+}
+
+@media (max-width: 600px) {
+    .site-nav a {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
+/* ---------- Cat gallery (existing) ---------- */
 
 .cat-container {
     display: flex;
@@ -121,6 +183,8 @@ body.dark-mode .cat-card p {
     border-radius: 20px;
     cursor: pointer;
     font-size: 14px;
+    font-family: 'Quicksand', Arial, sans-serif;
+    font-weight: 600;
     transition: background-color 0.3s ease;
     z-index: 1000;
     -webkit-transform: translateZ(0);
@@ -147,4 +211,164 @@ body.dark-mode .dark-mode-toggle {
 
 body.dark-mode .dark-mode-toggle:hover {
     background: #f5f5f5;
+}
+
+/* ---------- Donations page ---------- */
+
+.donate-intro {
+    max-width: 600px;
+    margin: 20px auto 10px;
+    text-align: center;
+    color: #555;
+    line-height: 1.7;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .donate-intro {
+    color: #aaa;
+}
+
+.donate-intro .paw-divider {
+    text-align: center;
+    letter-spacing: 12px;
+    color: #B8935F;
+    margin: 18px 0 6px;
+    font-size: 14px;
+}
+
+body.dark-mode .donate-intro .paw-divider {
+    color: #D9A441;
+}
+
+.crypto-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.crypto-card {
+    background: white;
+    border-radius: 10px;
+    padding: 22px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    transition: all 0.3s ease;
+    text-align: center;
+    border-top: 4px solid #B8935F;
+}
+
+.crypto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .crypto-card {
+    background: #2a2a2a;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    border-top: 4px solid #D9A441;
+}
+
+body.dark-mode .crypto-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+.crypto-card .crypto-symbol {
+    width: 48px;
+    height: 48px;
+    display: block;
+    margin: 0 auto 10px;
+    object-fit: contain;
+}
+
+.crypto-card h3 {
+    margin: 0 0 4px;
+    color: #444;
+    font-family: 'Quicksand', Arial, sans-serif;
+    font-weight: 600;
+}
+
+body.dark-mode .crypto-card h3 {
+    color: #ddd;
+}
+
+.crypto-card .network-label {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 14px;
+}
+
+body.dark-mode .crypto-card .network-label {
+    color: #777;
+}
+
+.crypto-address-box {
+    background: #f0f0f0;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    word-break: break-all;
+    color: #444;
+    margin-bottom: 12px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .crypto-address-box {
+    background: #1f1f1f;
+    color: #ccc;
+}
+
+.copy-btn {
+    background: #B8935F;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: 'Quicksand', Arial, sans-serif;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.copy-btn:hover {
+    background: #a37e4c;
+}
+
+.copy-btn.copied {
+    background: #6B8F71;
+}
+
+body.dark-mode .copy-btn {
+    background: #D9A441;
+    color: #1a1a1a;
+}
+
+body.dark-mode .copy-btn:hover {
+    background: #c79333;
+}
+
+body.dark-mode .copy-btn.copied {
+    background: #6B8F71;
+    color: white;
+}
+
+.donate-note {
+    max-width: 600px;
+    margin: 30px auto 10px;
+    padding: 14px 18px;
+    background: #fff9ec;
+    border-left: 4px solid #B8935F;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #6b5c3f;
+    line-height: 1.6;
+}
+
+body.dark-mode .donate-note {
+    background: #2a2618;
+    border-left: 4px solid #D9A441;
+    color: #c9b98a;
 }
