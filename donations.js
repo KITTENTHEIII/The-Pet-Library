@@ -1,6 +1,7 @@
 const walletAddresses = {
     btc: 'bc1qdpqaudfp6wdnd33x28yxyfe7c3h3we8020mnjj',
-    eth: '0xe610fFBa72509eFD5713435998C2bE6f120BB212'
+    eth: '0xe610fFBa72509eFD5713435998C2bE6f120BB212',
+    ltc: 'LTy8RQzEceopANEg5P2Ge3K6PUNksEVb3J'
 };
 
 function copyAddress(coin, button) {
