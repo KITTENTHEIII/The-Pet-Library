@@ -1,8 +1,6 @@
-// Wallet addresses live here so they only need updating in one place.
-// Replace these placeholders with your real addresses before publishing.
 const walletAddresses = {
-    btc: 'bc1qqx978drgg59h3pcxlsjvam9lvf0y3yqrmps6nc',
-    eth: '0x57aD77A0e7A5639Df4De7dE755E778bC1A83Eff3'
+    btc: 'bc1qdpqaudfp6wdnd33x28yxyfe7c3h3we8020mnjj',
+    eth: '0xe610fFBa72509eFD5713435998C2bE6f120BB212'
 };
 
 function copyAddress(coin, button) {
