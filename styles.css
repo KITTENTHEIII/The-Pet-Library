@@ -109,7 +109,7 @@ body.dark-mode .site-nav a.active {
     margin-top: 30px;
 }
 
-.cat-card {
+.animal-card {
     background: white;
     border-radius: 10px;
     padding: 20px;
@@ -121,26 +121,26 @@ body.dark-mode .site-nav a.active {
     user-select: none;
 }
 
-.cat-card:hover {
+.animal-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.cat-card:active {
+.animal-card:active {
     transform: translateY(-3px);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
-body.dark-mode .cat-card {
+body.dark-mode .animal-card {
     background: #2a2a2a;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-body.dark-mode .cat-card:hover {
+body.dark-mode .animal-card:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
 }
 
-.cat-card img {
+.animal-card img {
     width: 128px;
     height: 128px;
     display: block;
@@ -149,7 +149,7 @@ body.dark-mode .cat-card:hover {
     pointer-events: none;
 }
 
-.cat-card h2 {
+.animal-card h2 {
     color: #555;
     margin-top: 0;
     text-align: center;
@@ -157,18 +157,18 @@ body.dark-mode .cat-card:hover {
     pointer-events: none;
 }
 
-body.dark-mode .cat-card h2 {
+body.dark-mode .animal-card h2 {
     color: #b0b0b0;
 }
 
-.cat-card p {
+.animal-card p {
     color: #666;
     line-height: 1.6;
     transition: color 0.3s ease;
     pointer-events: none;
 }
 
-body.dark-mode .cat-card p {
+body.dark-mode .animal-card p {
     color: #999;
 }
 

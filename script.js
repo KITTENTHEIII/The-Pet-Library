@@ -26,9 +26,9 @@ function updateButtonText() {
     }
 }
 
-// Add click event to all cat cards with animal-specific sounds
+// Add click event to all animal cards with animal-specific sounds
 document.addEventListener('DOMContentLoaded', function() {
-    const catCards = document.querySelectorAll('.cat-card');
+    const animalCards = document.querySelectorAll('.animal-card');
 
     // Map animal types to sound files
     const animalSounds = {
@@ -36,10 +36,11 @@ document.addEventListener('DOMContentLoaded', function() {
         'dog': './sounds/woof.mp3',
         'hamster': './sounds/hamster.mp3',
         'bird': './sounds/bird.mp3',
+        'turtle': './sounds/turtle.mp3',
         'placeholder': './sounds/error.mp3'
     };
 
-    catCards.forEach(card => {
+    animalCards.forEach(card => {
         let canClick = true; // Cooldown flag
 
         card.addEventListener('click', function() {
