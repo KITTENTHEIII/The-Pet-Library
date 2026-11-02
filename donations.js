@@ -1,5 +1,5 @@
 const walletAddresses = {
-    btc: 'bc1q5f9t3cfyvm27f3tlemc2g9z63z7v5v8gn0daus',
+    btc: 'bc1qdpqaudfp6wdnd33x28yxyfe7c3h3we8020mnjj',
     xmr: '41wNWLTaU9UA84mnLDs62qMiHgpt5hbhg72ttDPXEsCw4xRsjbsVJeJHb4A6DDSRJ6cMrZmnxzid8Joz9JorzNx6JMnnKvY'
 };
 
