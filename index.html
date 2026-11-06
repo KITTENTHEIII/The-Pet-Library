@@ -9,22 +9,24 @@
 </head>
 <body>
     <div class="top-bar">
-        <nav class="site-nav">
-            <a href="index.html" class="active">🏠 Home</a>
-            <a href="donations.html">💝 Donate</a>
-            <a href="https://github.com/KITTENTHEIII/The-Pet-Library" target="_blank" rel="noopener noreferrer" class="github-link" title="View source code on GitHub">
-                <img src="./img/Logos/GitHub.png" alt="GitHub logo" class="github-logo">
-                Source Code
-            </a>
-        </nav>
-        <div class="top-controls">
-            <button class="options-toggle" id="options-toggle" onclick="toggleOptionsMenu()" aria-expanded="false" aria-controls="options-menu">⚙️ Options <span class="options-caret" aria-hidden="true">▾</span></button>
-            <div class="options-menu" id="options-menu">
-                <button class="options-item" id="dark-toggle" onclick="toggleDarkMode()" aria-pressed="false">
-                    <span class="options-label">🌙 Dark Mode</span><span class="options-state">Off</span>
+        <div class="tab-wrap top-links">
+            <button class="tab-toggle" id="menu-toggle" onclick="toggleTabMenu(this)" aria-expanded="false" aria-controls="menu-panel">🧭 Menu <span class="tab-caret" aria-hidden="true">▾</span></button>
+            <div class="tab-menu" id="menu-panel">
+                <a class="tab-item" href="index.html" aria-current="page"><span class="tab-label">🏠 Home</span></a>
+                <a class="tab-item" href="donations.html"><span class="tab-label">💝 Donate</span></a>
+                <a class="tab-item github-link" href="https://github.com/KITTENTHEIII/The-Pet-Library" target="_blank" rel="noopener noreferrer" title="View source code on GitHub">
+                    <span class="tab-label"><img src="./img/Logos/GitHub.png" alt="GitHub logo" class="github-logo"> Source Code</span><span class="tab-state" aria-hidden="true">↗</span>
+                </a>
+            </div>
+        </div>
+        <div class="tab-wrap top-controls">
+            <button class="tab-toggle" id="options-toggle" onclick="toggleTabMenu(this)" aria-expanded="false" aria-controls="options-panel">⚙️ Options <span class="tab-caret" aria-hidden="true">▾</span></button>
+            <div class="tab-menu" id="options-panel">
+                <button class="tab-item" id="dark-toggle" onclick="toggleDarkMode()" aria-pressed="false">
+                    <span class="tab-label">🌙 Dark Mode</span><span class="tab-state">Off</span>
                 </button>
-                <button class="options-item" id="hacker-toggle" onclick="toggleHackerMode()" aria-pressed="false">
-                    <span class="options-label">💻 Hacker Mode</span><span class="options-state">Off</span>
+                <button class="tab-item" id="hacker-toggle" onclick="toggleHackerMode()" aria-pressed="false">
+                    <span class="tab-label">💻 Hacker Mode</span><span class="tab-state">Off</span>
                 </button>
             </div>
         </div>

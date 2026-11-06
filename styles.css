@@ -45,60 +45,6 @@ body.dark-mode hr {
     border-color: #444;
 }
 
-/* ---------- Top navigation ---------- */
-
-.site-nav {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    display: flex;
-    gap: 8px;
-    z-index: 1000;
-}
-
-.site-nav a {
-    background: #333;
-    color: white;
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-family: 'Quicksand', Arial, sans-serif;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-}
-
-.site-nav a:hover {
-    background: #555;
-}
-
-.site-nav a.active {
-    background: #B8935F;
-}
-
-body.dark-mode .site-nav a {
-    background: #e0e0e0;
-    color: #333;
-}
-
-body.dark-mode .site-nav a:hover {
-    background: #f5f5f5;
-}
-
-body.dark-mode .site-nav a.active {
-    background: #D9A441;
-    color: #1a1a1a;
-}
-
-@media (max-width: 600px) {
-    .site-nav a {
-        padding: 6px 12px;
-        font-size: 12px;
-    }
-}
-
 /* ---------- Cat gallery (existing) ---------- */
 
 .cat-container {
@@ -332,12 +278,6 @@ body.dark-mode .donate-note {
     color: #c9b98a;
 }
 
-.github-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
 .github-logo {
     width: 20px;
     height: 20px;
@@ -357,7 +297,7 @@ body.dark-mode .github-logo {
     z-index: 1000;
 }
 
-.options-toggle {
+.tab-toggle {
     background: #333;
     color: white;
     border: none;
@@ -373,39 +313,39 @@ body.dark-mode .github-logo {
     transform: translateZ(0);
 }
 
-.options-toggle:hover {
+.tab-toggle:hover {
     background: #555;
 }
 
-.options-toggle[aria-expanded="true"] {
+.tab-toggle[aria-expanded="true"] {
     background: #B8935F;
 }
 
-.options-caret {
+.tab-caret {
     display: inline-block;
     margin-left: 4px;
     transition: transform 0.2s ease;
 }
 
-.options-toggle[aria-expanded="true"] .options-caret {
+.tab-toggle[aria-expanded="true"] .tab-caret {
     transform: rotate(180deg);
 }
 
-body.dark-mode .options-toggle {
+body.dark-mode .tab-toggle {
     background: #e0e0e0;
     color: #333;
 }
 
-body.dark-mode .options-toggle:hover {
+body.dark-mode .tab-toggle:hover {
     background: #f5f5f5;
 }
 
-body.dark-mode .options-toggle[aria-expanded="true"] {
+body.dark-mode .tab-toggle[aria-expanded="true"] {
     background: #D9A441;
     color: #1a1a1a;
 }
 
-.options-menu {
+.tab-menu {
     display: none;
     flex-direction: column;
     gap: 4px;
@@ -421,23 +361,23 @@ body.dark-mode .options-toggle[aria-expanded="true"] {
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
 }
 
-.options-menu.open {
+.tab-menu.open {
     display: flex;
-    animation: options-pop 0.15s ease-out;
+    animation: tab-pop 0.15s ease-out;
 }
 
-@keyframes options-pop {
+@keyframes tab-pop {
     from { opacity: 0; transform: translateY(-4px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-body.dark-mode .options-menu {
+body.dark-mode .tab-menu {
     background: #2a2a2a;
     border-color: #444;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
 }
 
-.options-item {
+.tab-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -458,20 +398,20 @@ body.dark-mode .options-menu {
     transition: background-color 0.2s ease;
 }
 
-.options-item:hover {
+.tab-item:hover {
     background: #f0f0f0;
 }
 
-.options-item:disabled {
+.tab-item:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
 
-.options-item:disabled:hover {
+.tab-item:disabled:hover {
     background: transparent;
 }
 
-.options-state {
+.tab-state {
     font-size: 12px;
     padding: 2px 8px;
     border-radius: 10px;
@@ -479,29 +419,64 @@ body.dark-mode .options-menu {
     color: #555;
 }
 
-.options-item[aria-pressed="true"] .options-state {
+.tab-item[aria-pressed="true"] .tab-state {
     background: #B8935F;
     color: white;
 }
 
-body.dark-mode .options-item {
+body.dark-mode .tab-item {
     color: #e0e0e0;
 }
 
-body.dark-mode .options-item:hover {
+body.dark-mode .tab-item:hover {
     background: #3a3a3a;
 }
 
-body.dark-mode .options-item:disabled:hover {
+body.dark-mode .tab-item:disabled:hover {
     background: transparent;
 }
 
-body.dark-mode .options-state {
+body.dark-mode .tab-state {
     background: #3a3a3a;
     color: #bbb;
 }
 
-body.dark-mode .options-item[aria-pressed="true"] .options-state {
+body.dark-mode .tab-item[aria-pressed="true"] .tab-state {
+    background: #D9A441;
+    color: #1a1a1a;
+}
+
+/* ---------- Menu tab (left) + shared tab extras ---------- */
+
+.top-links {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+}
+
+.top-links .tab-menu {
+    left: 0;
+    right: auto;
+}
+
+a.tab-item {
+    text-decoration: none;
+}
+
+.tab-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* The page you're on */
+.tab-item[aria-current="page"] {
+    background: #B8935F;
+    color: white;
+}
+
+body.dark-mode .tab-item[aria-current="page"] {
     background: #D9A441;
     color: #1a1a1a;
 }
@@ -570,8 +545,7 @@ body.hacker-mode hr {
 }
 
 /* Buttons and nav */
-body.hacker-mode .site-nav a,
-body.hacker-mode .options-toggle {
+body.hacker-mode .tab-toggle {
     background: #000;
     color: #00ff41;
     border: 1px solid #00ff41;
@@ -579,49 +553,52 @@ body.hacker-mode .options-toggle {
     box-shadow: 0 0 6px rgba(0, 255, 65, 0.4);
 }
 
-body.hacker-mode .site-nav a:hover,
-body.hacker-mode .options-toggle:hover {
+body.hacker-mode .tab-toggle:hover {
     background: #003b10;
     color: #7dff9f;
     box-shadow: 0 0 12px rgba(0, 255, 65, 0.8);
 }
 
-body.hacker-mode .site-nav a.active,
-body.hacker-mode .options-toggle[aria-expanded="true"] {
+body.hacker-mode .tab-toggle[aria-expanded="true"] {
     background: #00ff41;
     color: #000;
 }
 
 /* Options dropdown */
-body.hacker-mode .options-menu {
+body.hacker-mode .tab-menu {
     background: rgba(0, 12, 3, 0.97);
     border: 1px solid #00ff41;
     box-shadow: 0 0 14px rgba(0, 255, 65, 0.6);
 }
 
-body.hacker-mode .options-item {
+body.hacker-mode .tab-item {
     color: #00ff41;
     font-family: 'Courier New', Courier, monospace;
 }
 
-body.hacker-mode .options-item:hover {
+body.hacker-mode .tab-item:hover {
     background: #003b10;
 }
 
-body.hacker-mode .options-item:disabled:hover {
+body.hacker-mode .tab-item:disabled:hover {
     background: transparent;
 }
 
-body.hacker-mode .options-state {
+body.hacker-mode .tab-state {
     background: #000;
     color: #2bd35a;
     border: 1px solid #1f9c42;
 }
 
-body.hacker-mode .options-item[aria-pressed="true"] .options-state {
+body.hacker-mode .tab-item[aria-pressed="true"] .tab-state {
     background: #00ff41;
     color: #000;
     border-color: #00ff41;
+}
+
+body.hacker-mode .tab-item[aria-current="page"] {
+    background: #00ff41;
+    color: #000;
 }
 
 /* Cards */
@@ -699,9 +676,9 @@ body.hacker-mode .github-logo {
 }
 
 
-/* ---------- Mobile: swipeable nav + Options button ---------- */
+/* ---------- Mobile: Menu tab on the left, Options tab on the right ---------- */
 
-/* On desktop the wrapper is invisible: nav stays left, Options stays right */
+/* On desktop the wrapper is invisible: each tab is fixed in its own corner */
 .top-bar {
     display: contents;
 }
@@ -717,6 +694,7 @@ body.hacker-mode .github-logo {
     .top-bar {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 8px;
         position: fixed;
         top: 0;
@@ -730,44 +708,20 @@ body.hacker-mode .github-logo {
         z-index: 1000;
     }
 
-    /* The nav links slide sideways; the Options button stays pinned on the right */
-    .top-bar .site-nav {
-        position: static;
-        flex: 1 1 auto;
-        min-width: 0;
-        padding: 6px 4px;
-        margin: -6px -4px;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x proximity;
-        scrollbar-width: none;
-    }
-
-    .top-bar .site-nav::-webkit-scrollbar {
-        display: none;
-    }
-
-    .top-bar .site-nav a {
-        flex: 0 0 auto;
-        white-space: nowrap;
-        scroll-snap-align: start;
-        padding: 6px 12px;
-        font-size: 12px;
-    }
-
+    .top-bar .top-links,
     .top-bar .top-controls {
         position: relative;
         top: auto;
+        left: auto;
         right: auto;
-        flex: 0 0 auto;
     }
 
-    .top-bar .options-toggle {
+    .top-bar .tab-toggle {
         padding: 6px 12px;
         font-size: 12px;
     }
 
-    .options-menu {
+    .tab-menu {
         min-width: min(220px, calc(100vw - 20px));
     }
 

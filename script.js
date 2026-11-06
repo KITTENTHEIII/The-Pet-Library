@@ -1,6 +1,4 @@
-// ---------- Theme handling (light / dark / hacker) ----------
-// Hacker mode always forces dark mode. The saved dark/light preference is
-// left untouched, so turning hacker mode off restores whatever you had before.
+// Theme handling (light / dark / hacker)
 
 const body = document.body;
 
@@ -44,7 +42,7 @@ function toggleHackerMode() {
 function setItemState(item, on, label) {
     if (!item) return;
     item.setAttribute('aria-pressed', on ? 'true' : 'false');
-    const state = item.querySelector('.options-state');
+    const state = item.querySelector('.tab-state');
     if (state) state.textContent = label;
 }
 
@@ -63,36 +61,46 @@ function updateButtonText() {
     setItemState(hackerItem, hacker, hacker ? 'On' : 'Off');
 }
 
-// ---------- Options menu ----------
+// Tabs (Menu + Options dropdowns)
 
-function setOptionsMenu(open) {
-    const menu = document.getElementById('options-menu');
-    const toggle = document.getElementById('options-toggle');
-    if (!menu || !toggle) return;
+function setTabMenu(wrap, open) {
+    const menu = wrap.querySelector('.tab-menu');
+    const toggle = wrap.querySelector('.tab-toggle');
     menu.classList.toggle('open', open);
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
 
-function toggleOptionsMenu() {
-    const menu = document.getElementById('options-menu');
-    setOptionsMenu(!(menu && menu.classList.contains('open')));
+// Close every tab menu except the one passed in (if any)
+function closeTabMenus(except) {
+    document.querySelectorAll('.tab-wrap').forEach(function (wrap) {
+        if (wrap !== except) setTabMenu(wrap, false);
+    });
 }
 
-// Close when tapping/clicking anywhere outside the Options area
+function toggleTabMenu(button) {
+    const wrap = button.closest('.tab-wrap');
+    const willOpen = !wrap.querySelector('.tab-menu').classList.contains('open');
+    closeTabMenus(wrap);
+    setTabMenu(wrap, willOpen);
+}
+
+// Tapping/clicking anywhere outside an open tab closes it
 document.addEventListener('click', function (e) {
-    if (!e.target.closest('.top-controls')) setOptionsMenu(false);
+    closeTabMenus(e.target.closest('.tab-wrap'));
 });
 
-// Close with Escape (keyboards) and return focus to the Options button
+// Escape closes the open tab and returns focus to its button
 document.addEventListener('keydown', function (e) {
-    const menu = document.getElementById('options-menu');
-    if (e.key === 'Escape' && menu && menu.classList.contains('open')) {
-        setOptionsMenu(false);
-        document.getElementById('options-toggle').focus();
-    }
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('.tab-wrap').forEach(function (wrap) {
+        if (wrap.querySelector('.tab-menu').classList.contains('open')) {
+            setTabMenu(wrap, false);
+            wrap.querySelector('.tab-toggle').focus();
+        }
+    });
 });
 
-// ---------- Matrix rain background (hacker mode only) ----------
+// Matrix rain background (hacker mode only)
 
 let matrixCanvas = null;
 let matrixTimer = null;
@@ -149,7 +157,7 @@ function stopMatrixRain() {
     matrixTimer = null;
 }
 
-// ---------- Animal card sounds ----------
+// Animal card sounds
 
 document.addEventListener('DOMContentLoaded', function() {
     const animalCards = document.querySelectorAll('.animal-card');
