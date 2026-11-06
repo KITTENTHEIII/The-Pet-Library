@@ -388,3 +388,230 @@ body.dark-mode .donate-note {
 body.dark-mode .github-logo {
     filter: invert(1);
 }
+
+/* ---------- Top-right controls (Hacker + Dark mode buttons) ---------- */
+
+.top-controls {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+    z-index: 1000;
+}
+
+.top-controls .dark-mode-toggle,
+.top-controls .hacker-toggle {
+    position: static;
+}
+
+.hacker-toggle {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Quicksand', Arial, sans-serif;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.hacker-toggle:hover {
+    background: #555;
+}
+
+body.dark-mode .hacker-toggle {
+    background: #e0e0e0;
+    color: #333;
+}
+
+body.dark-mode .hacker-toggle:hover {
+    background: #f5f5f5;
+}
+
+.dark-mode-toggle:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .top-controls {
+        gap: 6px;
+    }
+
+    .hacker-toggle {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
+/* ---------- Hacker mode ---------- */
+/* Always paired with .dark-mode (set by script.js), these rules come last so they win. */
+
+.matrix-rain {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+body.hacker-mode {
+    background-color: #000;
+    font-family: 'Courier New', Courier, monospace;
+    color: #00ff41;
+}
+
+/* CRT scanlines */
+body.hacker-mode::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 255, 65, 0.04) 0,
+        rgba(0, 255, 65, 0.04) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+    z-index: 999;
+}
+
+body.hacker-mode h1,
+body.hacker-mode h2,
+body.hacker-mode h3,
+body.hacker-mode .animal-card h2,
+body.hacker-mode .crypto-card h3 {
+    font-family: 'Courier New', Courier, monospace;
+    color: #00ff41;
+    text-shadow: 0 0 8px rgba(0, 255, 65, 0.7);
+}
+
+body.hacker-mode h1::before {
+    content: "> ";
+}
+
+body.hacker-mode h1::after {
+    content: "_";
+    animation: hacker-blink 1s steps(1) infinite;
+}
+
+@keyframes hacker-blink {
+    50% { opacity: 0; }
+}
+
+body.hacker-mode hr {
+    border-color: #00ff41;
+    box-shadow: 0 0 6px rgba(0, 255, 65, 0.6);
+}
+
+/* Buttons and nav */
+body.hacker-mode .site-nav a,
+body.hacker-mode .dark-mode-toggle,
+body.hacker-mode .hacker-toggle {
+    background: #000;
+    color: #00ff41;
+    border: 1px solid #00ff41;
+    font-family: 'Courier New', Courier, monospace;
+    box-shadow: 0 0 6px rgba(0, 255, 65, 0.4);
+}
+
+body.hacker-mode .site-nav a:hover,
+body.hacker-mode .dark-mode-toggle:not(:disabled):hover,
+body.hacker-mode .hacker-toggle:hover {
+    background: #003b10;
+    color: #7dff9f;
+    box-shadow: 0 0 12px rgba(0, 255, 65, 0.8);
+}
+
+body.hacker-mode .site-nav a.active,
+body.hacker-mode .hacker-toggle {
+    background: #00ff41;
+    color: #000;
+}
+
+body.hacker-mode .hacker-toggle:hover {
+    background: #7dff9f;
+    color: #000;
+}
+
+/* Cards */
+body.hacker-mode .animal-card,
+body.hacker-mode .crypto-card {
+    background: rgba(0, 12, 3, 0.9);
+    border: 1px solid #00ff41;
+    box-shadow: 0 0 8px rgba(0, 255, 65, 0.35);
+}
+
+body.hacker-mode .animal-card:hover,
+body.hacker-mode .crypto-card:hover {
+    box-shadow: 0 0 18px rgba(0, 255, 65, 0.8);
+}
+
+body.hacker-mode .animal-card p {
+    color: #2bd35a;
+}
+
+body.hacker-mode .animal-card img {
+    border: 1px solid #00ff41;
+    filter: grayscale(1) sepia(1) hue-rotate(70deg) saturate(3) brightness(0.9);
+}
+
+/* Donations page */
+body.hacker-mode .donate-intro,
+body.hacker-mode .donate-intro .paw-divider {
+    color: #2bd35a;
+}
+
+body.hacker-mode .crypto-card .network-label {
+    color: #1f9c42;
+}
+
+body.hacker-mode .crypto-card .crypto-symbol {
+    filter: grayscale(1) sepia(1) hue-rotate(70deg) saturate(3);
+}
+
+body.hacker-mode .crypto-address-box {
+    background: #000;
+    color: #00ff41;
+    border: 1px dashed #00ff41;
+}
+
+body.hacker-mode .copy-btn {
+    background: #00ff41;
+    color: #000;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body.hacker-mode .copy-btn:hover {
+    background: #7dff9f;
+}
+
+body.hacker-mode .copy-btn.copied {
+    background: #003b10;
+    color: #00ff41;
+    border: 1px solid #00ff41;
+}
+
+body.hacker-mode .donate-note {
+    background: rgba(0, 12, 3, 0.9);
+    border-left: 4px solid #00ff41;
+    color: #2bd35a;
+}
+
+body.hacker-mode .github-logo {
+    filter: brightness(0) invert(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.hacker-mode h1::after {
+        animation: none;
+    }
+}
