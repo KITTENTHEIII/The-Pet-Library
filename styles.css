@@ -172,47 +172,6 @@ body.dark-mode .animal-card p {
     color: #999;
 }
 
-.dark-mode-toggle {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background: #333;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    font-family: 'Quicksand', Arial, sans-serif;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-    z-index: 1000;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-}
-
-@media (max-width: 600px) {
-    .dark-mode-toggle {
-        top: 10px;
-        right: 10px;
-        padding: 6px 12px;
-        font-size: 12px;
-    }
-}
-
-.dark-mode-toggle:hover {
-    background: #555;
-}
-
-body.dark-mode .dark-mode-toggle {
-    background: #e0e0e0;
-    color: #333;
-}
-
-body.dark-mode .dark-mode-toggle:hover {
-    background: #f5f5f5;
-}
-
 /* ---------- Donations page ---------- */
 
 .donate-intro {
@@ -389,23 +348,16 @@ body.dark-mode .github-logo {
     filter: invert(1);
 }
 
-/* ---------- Top-right controls (Hacker + Dark mode buttons) ---------- */
+/* ---------- Options button + dropdown ---------- */
 
 .top-controls {
     position: fixed;
     top: 10px;
     right: 10px;
-    display: flex;
-    gap: 8px;
     z-index: 1000;
 }
 
-.top-controls .dark-mode-toggle,
-.top-controls .hacker-toggle {
-    position: static;
-}
-
-.hacker-toggle {
+.options-toggle {
     background: #333;
     color: white;
     border: none;
@@ -415,38 +367,143 @@ body.dark-mode .github-logo {
     font-size: 14px;
     font-family: 'Quicksand', Arial, sans-serif;
     font-weight: 600;
+    white-space: nowrap;
     transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
 }
 
-.hacker-toggle:hover {
+.options-toggle:hover {
     background: #555;
 }
 
-body.dark-mode .hacker-toggle {
+.options-toggle[aria-expanded="true"] {
+    background: #B8935F;
+}
+
+.options-caret {
+    display: inline-block;
+    margin-left: 4px;
+    transition: transform 0.2s ease;
+}
+
+.options-toggle[aria-expanded="true"] .options-caret {
+    transform: rotate(180deg);
+}
+
+body.dark-mode .options-toggle {
     background: #e0e0e0;
     color: #333;
 }
 
-body.dark-mode .hacker-toggle:hover {
+body.dark-mode .options-toggle:hover {
     background: #f5f5f5;
 }
 
-.dark-mode-toggle:disabled {
-    opacity: 0.45;
+body.dark-mode .options-toggle[aria-expanded="true"] {
+    background: #D9A441;
+    color: #1a1a1a;
+}
+
+.options-menu {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 210px;
+    box-sizing: border-box;
+    padding: 6px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.options-menu.open {
+    display: flex;
+    animation: options-pop 0.15s ease-out;
+}
+
+@keyframes options-pop {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+body.dark-mode .options-menu {
+    background: #2a2a2a;
+    border-color: #444;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+
+.options-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    background: transparent;
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    font-family: 'Quicksand', Arial, sans-serif;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+}
+
+.options-item:hover {
+    background: #f0f0f0;
+}
+
+.options-item:disabled {
+    opacity: 0.6;
     cursor: not-allowed;
 }
 
-@media (max-width: 600px) {
-    .top-controls {
-        gap: 6px;
-    }
+.options-item:disabled:hover {
+    background: transparent;
+}
 
-    .hacker-toggle {
-        padding: 6px 12px;
-        font-size: 12px;
-    }
+.options-state {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: #e8e8e8;
+    color: #555;
+}
+
+.options-item[aria-pressed="true"] .options-state {
+    background: #B8935F;
+    color: white;
+}
+
+body.dark-mode .options-item {
+    color: #e0e0e0;
+}
+
+body.dark-mode .options-item:hover {
+    background: #3a3a3a;
+}
+
+body.dark-mode .options-item:disabled:hover {
+    background: transparent;
+}
+
+body.dark-mode .options-state {
+    background: #3a3a3a;
+    color: #bbb;
+}
+
+body.dark-mode .options-item[aria-pressed="true"] .options-state {
+    background: #D9A441;
+    color: #1a1a1a;
 }
 
 /* ---------- Hacker mode ---------- */
@@ -514,8 +571,7 @@ body.hacker-mode hr {
 
 /* Buttons and nav */
 body.hacker-mode .site-nav a,
-body.hacker-mode .dark-mode-toggle,
-body.hacker-mode .hacker-toggle {
+body.hacker-mode .options-toggle {
     background: #000;
     color: #00ff41;
     border: 1px solid #00ff41;
@@ -524,22 +580,48 @@ body.hacker-mode .hacker-toggle {
 }
 
 body.hacker-mode .site-nav a:hover,
-body.hacker-mode .dark-mode-toggle:not(:disabled):hover,
-body.hacker-mode .hacker-toggle:hover {
+body.hacker-mode .options-toggle:hover {
     background: #003b10;
     color: #7dff9f;
     box-shadow: 0 0 12px rgba(0, 255, 65, 0.8);
 }
 
 body.hacker-mode .site-nav a.active,
-body.hacker-mode .hacker-toggle {
+body.hacker-mode .options-toggle[aria-expanded="true"] {
     background: #00ff41;
     color: #000;
 }
 
-body.hacker-mode .hacker-toggle:hover {
-    background: #7dff9f;
+/* Options dropdown */
+body.hacker-mode .options-menu {
+    background: rgba(0, 12, 3, 0.97);
+    border: 1px solid #00ff41;
+    box-shadow: 0 0 14px rgba(0, 255, 65, 0.6);
+}
+
+body.hacker-mode .options-item {
+    color: #00ff41;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body.hacker-mode .options-item:hover {
+    background: #003b10;
+}
+
+body.hacker-mode .options-item:disabled:hover {
+    background: transparent;
+}
+
+body.hacker-mode .options-state {
+    background: #000;
+    color: #2bd35a;
+    border: 1px solid #1f9c42;
+}
+
+body.hacker-mode .options-item[aria-pressed="true"] .options-state {
+    background: #00ff41;
     color: #000;
+    border-color: #00ff41;
 }
 
 /* Cards */
@@ -617,14 +699,17 @@ body.hacker-mode .github-logo {
 }
 
 
-/* ---------- Mobile: one swipeable button strip ---------- */
+/* ---------- Mobile: swipeable nav + Options button ---------- */
 
-/* On desktop the wrapper is invisible; nav stays left and controls stay right */
+/* On desktop the wrapper is invisible: nav stays left, Options stays right */
 .top-bar {
     display: contents;
 }
 
-@media (max-width: 600px) {
+/* Covers small phones, large phones, foldables and phones in landscape */
+@media (max-width: 600px),
+       (pointer: coarse) and (max-width: 1024px),
+       (pointer: coarse) and (max-height: 500px) {
     body {
         padding-top: 58px;
     }
@@ -639,31 +724,51 @@ body.hacker-mode .github-logo {
         right: 0;
         box-sizing: border-box;
         padding: 10px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x proximity;
-        scrollbar-width: none;
         background: rgba(245, 245, 245, 0.92);
         -webkit-backdrop-filter: blur(6px);
         backdrop-filter: blur(6px);
         z-index: 1000;
     }
 
-    .top-bar::-webkit-scrollbar {
+    /* The nav links slide sideways; the Options button stays pinned on the right */
+    .top-bar .site-nav {
+        position: static;
+        flex: 1 1 auto;
+        min-width: 0;
+        padding: 6px 4px;
+        margin: -6px -4px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none;
+    }
+
+    .top-bar .site-nav::-webkit-scrollbar {
         display: none;
     }
 
-    .top-bar .site-nav,
-    .top-bar .top-controls {
-        position: static;
+    .top-bar .site-nav a {
         flex: 0 0 auto;
+        white-space: nowrap;
         scroll-snap-align: start;
+        padding: 6px 12px;
+        font-size: 12px;
     }
 
-    .top-bar a,
-    .top-bar button {
-        white-space: nowrap;
+    .top-bar .top-controls {
+        position: relative;
+        top: auto;
+        right: auto;
+        flex: 0 0 auto;
+    }
+
+    .top-bar .options-toggle {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .options-menu {
+        min-width: min(220px, calc(100vw - 20px));
     }
 
     body.dark-mode .top-bar {

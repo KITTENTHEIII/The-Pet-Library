@@ -1,4 +1,6 @@
-// Theme handling (light / dark / hacker) 
+// ---------- Theme handling (light / dark / hacker) ----------
+// Hacker mode always forces dark mode. The saved dark/light preference is
+// left untouched, so turning hacker mode off restores whatever you had before.
 
 const body = document.body;
 
@@ -39,29 +41,58 @@ function toggleHackerMode() {
     updateButtonText();
 }
 
-function updateButtonText() {
-    const darkButton = document.querySelector('.dark-mode-toggle');
-    const hackerButton = document.querySelector('.hacker-toggle');
-    const hacker = body.classList.contains('hacker-mode');
-
-    if (darkButton) {
-        darkButton.disabled = hacker;
-        darkButton.title = hacker ? 'Dark mode is locked while Hacker Mode is on' : '';
-        if (hacker) {
-            darkButton.textContent = '🔒 Dark Locked';
-        } else if (body.classList.contains('dark-mode')) {
-            darkButton.textContent = '☀️ Light Mode';
-        } else {
-            darkButton.textContent = '🌙 Dark Mode';
-        }
-    }
-
-    if (hackerButton) {
-        hackerButton.textContent = hacker ? '💻 Exit Hacker' : '💻 Hacker Mode';
-    }
+function setItemState(item, on, label) {
+    if (!item) return;
+    item.setAttribute('aria-pressed', on ? 'true' : 'false');
+    const state = item.querySelector('.options-state');
+    if (state) state.textContent = label;
 }
 
-// Matrix rain background (hacker mode only)
+function updateButtonText() {
+    const darkItem = document.getElementById('dark-toggle');
+    const hackerItem = document.getElementById('hacker-toggle');
+    const hacker = body.classList.contains('hacker-mode');
+    const dark = body.classList.contains('dark-mode');
+
+    if (darkItem) {
+        // Dark mode is locked on while hacker mode is active
+        darkItem.disabled = hacker;
+        darkItem.title = hacker ? 'Dark mode is locked on while Hacker Mode is active' : '';
+        setItemState(darkItem, dark, hacker ? '🔒 On' : (dark ? 'On' : 'Off'));
+    }
+    setItemState(hackerItem, hacker, hacker ? 'On' : 'Off');
+}
+
+// ---------- Options menu ----------
+
+function setOptionsMenu(open) {
+    const menu = document.getElementById('options-menu');
+    const toggle = document.getElementById('options-toggle');
+    if (!menu || !toggle) return;
+    menu.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+
+function toggleOptionsMenu() {
+    const menu = document.getElementById('options-menu');
+    setOptionsMenu(!(menu && menu.classList.contains('open')));
+}
+
+// Close when tapping/clicking anywhere outside the Options area
+document.addEventListener('click', function (e) {
+    if (!e.target.closest('.top-controls')) setOptionsMenu(false);
+});
+
+// Close with Escape (keyboards) and return focus to the Options button
+document.addEventListener('keydown', function (e) {
+    const menu = document.getElementById('options-menu');
+    if (e.key === 'Escape' && menu && menu.classList.contains('open')) {
+        setOptionsMenu(false);
+        document.getElementById('options-toggle').focus();
+    }
+});
+
+// ---------- Matrix rain background (hacker mode only) ----------
 
 let matrixCanvas = null;
 let matrixTimer = null;
@@ -118,7 +149,7 @@ function stopMatrixRain() {
     matrixTimer = null;
 }
 
-// Animal card sounds
+// ---------- Animal card sounds ----------
 
 document.addEventListener('DOMContentLoaded', function() {
     const animalCards = document.querySelectorAll('.animal-card');

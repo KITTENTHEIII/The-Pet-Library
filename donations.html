@@ -14,8 +14,15 @@
             <a href="donations.html" class="active">💝 Donate</a>
         </nav>
         <div class="top-controls">
-            <button class="hacker-toggle" onclick="toggleHackerMode()">💻 Hacker Mode</button>
-            <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+            <button class="options-toggle" id="options-toggle" onclick="toggleOptionsMenu()" aria-expanded="false" aria-controls="options-menu">⚙️ Options <span class="options-caret" aria-hidden="true">▾</span></button>
+            <div class="options-menu" id="options-menu">
+                <button class="options-item" id="dark-toggle" onclick="toggleDarkMode()" aria-pressed="false">
+                    <span class="options-label">🌙 Dark Mode</span><span class="options-state">Off</span>
+                </button>
+                <button class="options-item" id="hacker-toggle" onclick="toggleHackerMode()" aria-pressed="false">
+                    <span class="options-label">💻 Hacker Mode</span><span class="options-state">Off</span>
+                </button>
+            </div>
         </div>
     </div>
 
