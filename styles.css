@@ -372,3 +372,19 @@ body.dark-mode .donate-note {
     border-left: 4px solid #D9A441;
     color: #c9b98a;
 }
+
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.github-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+body.dark-mode .github-logo {
+    filter: invert(1);
+}
